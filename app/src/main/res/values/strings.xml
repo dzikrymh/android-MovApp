@@ -12,4 +12,6 @@
     <string name="discover_movie_genre">Discover movie by genre</string>
     <string name="review">Review</string>
     <string name="overview">Storyline</string>
+    <string name="movie">Movie</string>
+    <string name="news">News</string>
 </resources>

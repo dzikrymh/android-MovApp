@@ -11,12 +11,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainActivityViewModel: ViewModel() {
-
-    lateinit var liveDataListPopular: MutableLiveData<Movie.GetResponseMovie?>
-    lateinit var liveDataListTopRated: MutableLiveData<Movie.GetResponseMovie?>
-    lateinit var liveDataListUpcoming: MutableLiveData<Movie.GetResponseMovie?>
-    lateinit var liveDataListGenre: MutableLiveData<Genre.GetResponseGenre?>
+class MovieViewModel : ViewModel() {
+    var liveDataListPopular: MutableLiveData<Movie.GetResponseMovie?>
+    var liveDataListTopRated: MutableLiveData<Movie.GetResponseMovie?>
+    var liveDataListUpcoming: MutableLiveData<Movie.GetResponseMovie?>
+    var liveDataListGenre: MutableLiveData<Genre.GetResponseGenre?>
 
     init {
         liveDataListPopular = MutableLiveData()
