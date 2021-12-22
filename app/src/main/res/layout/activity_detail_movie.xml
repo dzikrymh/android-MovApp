@@ -18,7 +18,9 @@
             app:layout_constraintBottom_toBottomOf="@+id/backdrop_guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/sample_movie"
+            android:scaleType="centerCrop"/>
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -58,7 +60,9 @@
             <ImageView
                 android:id="@+id/movie_poster"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                tools:src="@drawable/sample_movie"
+                android:scaleType="centerCrop"/>
 
         </androidx.cardview.widget.CardView>
 
@@ -79,6 +83,7 @@
             android:textColor="?attr/textPrimary"
             android:textSize="18sp"
             android:textStyle="bold"
+            tools:text="Spider-Man: No Way Home"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/movie_poster_card"
             app:layout_constraintTop_toBottomOf="@+id/backdrop_guideline" />
@@ -89,6 +94,7 @@
             android:layout_height="wrap_content"
             android:textColor="#757575"
             android:textSize="12sp"
+            tools:text="15 Desember 2021"
             app:layout_constraintEnd_toEndOf="@+id/movie_title"
             app:layout_constraintStart_toStartOf="@+id/movie_title"
             app:layout_constraintTop_toBottomOf="@+id/movie_title" />
@@ -100,7 +106,10 @@
             android:layout_marginTop="4dp"
             app:layout_constraintEnd_toEndOf="@+id/movie_release_date"
             app:layout_constraintStart_toStartOf="@+id/movie_release_date"
-            app:layout_constraintTop_toBottomOf="@+id/movie_release_date" />
+            app:layout_constraintTop_toBottomOf="@+id/movie_release_date"
+            tools:listitem="@layout/item_genre"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/movie_poster_title_barrier"
@@ -142,7 +151,8 @@
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="@+id/movie_poster_card"
             app:layout_constraintStart_toStartOf="@+id/movie_poster_card"
-            app:layout_constraintTop_toBottomOf="@+id/movie_poster_card" />
+            app:layout_constraintTop_toBottomOf="@+id/movie_poster_card"
+            tools:rating="5"/>
 
         <TextView
             android:id="@+id/textView"
@@ -165,6 +175,10 @@
             android:clipToPadding="false"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_review"
+            tools:itemCount="3"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

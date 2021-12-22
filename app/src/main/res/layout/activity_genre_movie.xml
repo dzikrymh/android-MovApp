@@ -33,6 +33,10 @@
         android:layout_marginTop="8dp"
         android:clipToPadding="false"
         android:paddingStart="16dp"
-        android:paddingEnd="16dp" />
+        android:paddingEnd="16dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="3"
+        tools:listitem="@layout/item_movie"/>
 
 </LinearLayout>

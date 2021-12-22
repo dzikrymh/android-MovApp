@@ -42,7 +42,11 @@
                 android:layout_marginTop="16dp"
                 android:clipToPadding="false"
                 android:paddingStart="16dp"
-                android:paddingEnd="16dp" />
+                android:paddingEnd="16dp"
+                android:scrollbars="none"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_genre"/>
 
         </LinearLayout>
 
@@ -71,7 +75,10 @@
             android:layout_marginTop="8dp"
             android:clipToPadding="false"
             android:paddingStart="16dp"
-            android:paddingEnd="16dp" />
+            android:paddingEnd="16dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_movie"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -98,7 +105,10 @@
             android:layout_marginTop="8dp"
             android:clipToPadding="false"
             android:paddingStart="16dp"
-            android:paddingEnd="16dp" />
+            android:paddingEnd="16dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_movie" />
 
         <TextView
             android:layout_width="match_parent"
@@ -126,7 +136,10 @@
             android:layout_marginBottom="16dp"
             android:clipToPadding="false"
             android:paddingStart="16dp"
-            android:paddingEnd="16dp" />
+            android:paddingEnd="16dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_movie" />
 
     </LinearLayout>
 
