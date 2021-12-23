@@ -43,7 +43,7 @@ class MovieViewModel : ViewModel() {
     fun getApiMoviesPopular(
         page: Int = 1
     ) {
-        val retroInstance = RetrofitInstance.getRetrofitInstance()
+        val retroInstance = RetrofitInstance.getRetrofitMovieInstance()
         val retroService = retroInstance.create(APIs::class.java)
         val call = retroService.getPopularMovie(
             Tools.API_KEY_MOVIE,
@@ -70,7 +70,7 @@ class MovieViewModel : ViewModel() {
     fun getApiMoviesTopRated(
         page: Int = 1
     ) {
-        val retroInstance = RetrofitInstance.getRetrofitInstance()
+        val retroInstance = RetrofitInstance.getRetrofitMovieInstance()
         val retroService = retroInstance.create(APIs::class.java)
         val call = retroService.getTopRatedMovie(
             Tools.API_KEY_MOVIE,
@@ -97,7 +97,7 @@ class MovieViewModel : ViewModel() {
     fun getApiMoviesUpcoming(
         page: Int = 1
     ) {
-        val retroInstance = RetrofitInstance.getRetrofitInstance()
+        val retroInstance = RetrofitInstance.getRetrofitMovieInstance()
         val retroService = retroInstance.create(APIs::class.java)
         val call = retroService.getUpcomingMovie(
             Tools.API_KEY_MOVIE,
@@ -122,7 +122,7 @@ class MovieViewModel : ViewModel() {
     }
 
     fun getApiGenreList() {
-        val retroInstance = RetrofitInstance.getRetrofitInstance()
+        val retroInstance = RetrofitInstance.getRetrofitMovieInstance()
         val retroService = retroInstance.create(APIs::class.java)
         val call = retroService.getGenreMovie(
             Tools.API_KEY_MOVIE

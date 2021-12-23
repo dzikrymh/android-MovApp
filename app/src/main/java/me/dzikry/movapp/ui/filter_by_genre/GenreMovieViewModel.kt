@@ -25,7 +25,7 @@ class GenreMovieViewModel : ViewModel() {
         genre_id: String,
         page: Int = 1
     ) {
-        val retroInstance = RetrofitInstance.getRetrofitInstance()
+        val retroInstance = RetrofitInstance.getRetrofitMovieInstance()
         val retroService = retroInstance.create(APIs::class.java)
         val call = retroService.getMovieByGenre(
             Tools.API_KEY_MOVIE,

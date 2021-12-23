@@ -38,7 +38,7 @@ class DetailMovieViewModel : ViewModel() {
     fun getApiDetailMovie(
         movie_id: String,
     ) {
-        val retroInstance = RetrofitInstance.getRetrofitInstance()
+        val retroInstance = RetrofitInstance.getRetrofitMovieInstance()
         val retroService = retroInstance.create(APIs::class.java)
         val call = retroService.getDetailMovie(
             movie_id,
@@ -65,7 +65,7 @@ class DetailMovieViewModel : ViewModel() {
     fun getApiTrailerLink(
         movie_id: String
     ) {
-        val retroInstance = RetrofitInstance.getRetrofitInstance()
+        val retroInstance = RetrofitInstance.getRetrofitMovieInstance()
         val retroService = retroInstance.create(APIs::class.java)
         val call = retroService.getTrailerLink(
             movie_id,
@@ -93,7 +93,7 @@ class DetailMovieViewModel : ViewModel() {
         movie_id: String,
         page: Int,
     ) {
-        val retroInstance = RetrofitInstance.getRetrofitInstance()
+        val retroInstance = RetrofitInstance.getRetrofitMovieInstance()
         val retroService = retroInstance.create(APIs::class.java)
         val call = retroService.getReviewMovie(
             movie_id,

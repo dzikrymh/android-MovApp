@@ -4,6 +4,7 @@ import android.app.Activity
 import android.util.DisplayMetrics
 import android.view.Display
 import me.dzikry.movapp.R
+import kotlin.math.roundToInt
 
 
 class Tools {
@@ -11,6 +12,8 @@ class Tools {
         /**
          * Base url api
          */
+        const val BASE_URL_NEWS = "https://newsapi.org/v2/"
+        const val API_KEY_NEWS = "53bc8066d2c04b89b40ecaec64e20e77"
         const val BASE_URL_MOVIE = "https://api.themoviedb.org/3/"
         const val API_KEY_MOVIE = "6f444511e0cc6abeaa64e43815365c8b"
 
@@ -35,7 +38,7 @@ class Tools {
             display.getMetrics(displayMetrics)
             val screenWidth = displayMetrics.widthPixels.toFloat()
             val cellWidth = activity.resources.getDimension(R.dimen.item_movie_width)
-            return Math.round(screenWidth / cellWidth)
+            return (screenWidth / cellWidth).roundToInt()
         }
     }
 }

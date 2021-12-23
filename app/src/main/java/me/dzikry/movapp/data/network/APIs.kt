@@ -54,5 +54,24 @@ interface APIs {
         @Path("movie_id") movie_id: String,
         @Query("api_key") api_key: String,
         @Query("page") page: Int,
-    ):Call<Review.GetReviewResponse>
+    ): Call<Review.GetReviewResponse>
+
+    @GET("top-headlines")
+    fun getTopHeadlines(
+        @Query("apiKey") api_key: String,
+        @Query("country") country: String,
+        @Query("category") category: String,
+        @Query("language") language: String,
+        @Query("page") page: Int,
+        @Query("pageSize") pageSize: Int,
+    ): Call<Article.GetNewsResponse>
+
+    @GET("everything")
+    fun getSearchNews(
+        @Query("apiKey") api_key: String,
+        @Query("q") keyword: String,
+        @Query("language") language: String,
+        @Query("page") page: Int,
+        @Query("pageSize") pageSize: Int,
+    ): Call<Article.GetNewsResponse>
 }
