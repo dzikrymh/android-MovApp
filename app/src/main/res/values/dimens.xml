@@ -2,4 +2,7 @@
 <resources>
     <dimen name="item_movie_width">128dp</dimen>
     <dimen name="item_movie_height">172dp</dimen>
+
+    <dimen name="item_news_width">250dp</dimen>
+    <dimen name="item_news_height">200dp</dimen>
 </resources>

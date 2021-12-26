@@ -2,6 +2,7 @@ package me.dzikry.movapp.data.network
 
 import me.dzikry.movapp.data.models.*
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -57,21 +58,21 @@ interface APIs {
     ): Call<Review.GetReviewResponse>
 
     @GET("top-headlines")
-    fun getTopHeadlines(
+    suspend fun getTopHeadlines(
         @Query("apiKey") api_key: String,
         @Query("country") country: String,
         @Query("category") category: String,
         @Query("language") language: String,
         @Query("page") page: Int,
         @Query("pageSize") pageSize: Int,
-    ): Call<Article.GetNewsResponse>
+    ): Response<Article.GetNewsResponse>
 
     @GET("everything")
-    fun getSearchNews(
+    suspend fun getSearchNews(
         @Query("apiKey") api_key: String,
         @Query("q") keyword: String,
         @Query("language") language: String,
         @Query("page") page: Int,
         @Query("pageSize") pageSize: Int,
-    ): Call<Article.GetNewsResponse>
+    ): Response<Article.GetNewsResponse>
 }
