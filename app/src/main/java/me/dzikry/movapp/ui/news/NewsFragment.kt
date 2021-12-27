@@ -7,8 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import me.dzikry.movapp.R
 import me.dzikry.movapp.data.models.Article
 import me.dzikry.movapp.data.network.APIs
@@ -16,7 +14,8 @@ import me.dzikry.movapp.data.network.Resource
 import me.dzikry.movapp.data.network.RetrofitInstance
 import me.dzikry.movapp.data.repositories.NewsRepository
 import me.dzikry.movapp.databinding.FragmentNewsBinding
-import me.dzikry.movapp.ui.news.adapter.NewsCategoryAdapter
+import me.dzikry.movapp.ui.news.adapter.NewsAdapter
+import me.dzikry.movapp.ui.news.adapter.TrendingAdapter
 
 class NewsFragment : Fragment() {
 
@@ -27,10 +26,11 @@ class NewsFragment : Fragment() {
     private lateinit var binding: FragmentNewsBinding
     private lateinit var viewModel: NewsViewModel
 
-    private lateinit var newsCategoryAdapter: NewsCategoryAdapter
-    private lateinit var newsCategoryLayoutMgr: LinearLayoutManager
+    private lateinit var mAdapter: NewsAdapter
+    private lateinit var mAdapter2: TrendingAdapter
 
     private var newsCategoryPage = 1
+    private var newsTrendingPage = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,20 +47,8 @@ class NewsFragment : Fragment() {
         val factory = NewsViewModelFactory(repo)
         viewModel = ViewModelProvider(this, factory).get(NewsViewModel::class.java)
 
-        newsCategoryLayoutMgr = LinearLayoutManager(
-            context,
-            LinearLayoutManager.HORIZONTAL,
-            false
-        )
-        binding.recyclerViewCategory.layoutManager = newsCategoryLayoutMgr
-        newsCategoryAdapter = NewsCategoryAdapter(mutableListOf()) { news -> showNewsDetails(news) }
-        binding.recyclerViewCategory.adapter = newsCategoryAdapter
-
         binding.radioGroup.setOnCheckedChangeListener { radioGroup, id ->
-            if (id == R.id.radioLatest) {
-                clearDataNewsCategory()
-                getNewsCategory("", newsCategoryPage)
-            } else if (id == R.id.radioBusiness) {
+            if (id == R.id.radioBusiness) {
                 clearDataNewsCategory()
                 getNewsCategory("business", newsCategoryPage)
             } else if (id == R.id.radioEntertainment) {
@@ -84,12 +72,11 @@ class NewsFragment : Fragment() {
             }
         }
 
-        getNewsCategory("", newsCategoryPage)
+        getNewsCategory("business", newsCategoryPage)
+        getNewsTrending(newsTrendingPage)
     }
 
     private fun clearDataNewsCategory() {
-        newsCategoryPage = 1
-        newsCategoryAdapter.clearNewsCategory()
         viewModel.clearHeadlinesNews()
     }
 
@@ -105,8 +92,11 @@ class NewsFragment : Fragment() {
                     binding.progressBarNewsCategory.visibility = View.GONE
                     binding.recyclerViewCategory.visibility = View.VISIBLE
                     response.data?.let {
-                        newsCategoryAdapter.appendNewsCategory(it)
-                        attachPopularNewsCategoryOnScrollListener(category)
+                        mAdapter = NewsAdapter {news -> showNewsDetails(news)}
+                        binding.recyclerViewCategory.apply {
+                            adapter = mAdapter
+                        }
+                        mAdapter.differ.submitList(it)
                     }
                 }
                 is Resource.Error -> {
@@ -124,19 +114,31 @@ class NewsFragment : Fragment() {
         })
     }
 
-    private fun attachPopularNewsCategoryOnScrollListener(category: String) {
-        binding.recyclerViewCategory.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                if (dx > 0) { //check for scroll down
-                    val visibleItemCount = newsCategoryLayoutMgr.childCount
-                    val totalItemCount = newsCategoryLayoutMgr.itemCount
-                    val pastVisibleItems = newsCategoryLayoutMgr.findFirstVisibleItemPosition()
-
-                    if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
-                        binding.recyclerViewCategory.removeOnScrollListener(this)
-                        newsCategoryPage++
-                        getNewsCategory(category, newsCategoryPage)
+    private fun getNewsTrending(page: Int) {
+        viewModel.getTrendingNews("", page)
+        viewModel.trendingNews.observe(viewLifecycleOwner, { response ->
+            when (response) {
+                is Resource.Success -> {
+                    binding.progressBarNewsTrending.visibility = View.GONE
+                    binding.recyclerViewTrending.visibility = View.VISIBLE
+                    response.data?.let {
+                        mAdapter2 = TrendingAdapter {news -> showNewsDetails(news)}
+                        binding.recyclerViewTrending.apply {
+                            adapter = mAdapter2
+                        }
+                        mAdapter2.differ.submitList(it)
                     }
+                }
+                is Resource.Error -> {
+                    binding.progressBarNewsTrending.visibility = View.GONE
+                    binding.recyclerViewTrending.visibility = View.GONE
+                    response.message?.let {
+                        Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+                    }
+                }
+                is Resource.Loading -> {
+                    binding.progressBarNewsTrending.visibility = View.VISIBLE
+                    binding.recyclerViewTrending.visibility = View.GONE
                 }
             }
         })

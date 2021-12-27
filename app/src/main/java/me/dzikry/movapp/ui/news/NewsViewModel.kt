@@ -12,7 +12,9 @@ import java.io.IOException
 
 class NewsViewModel(private val repository: NewsRepository) : ViewModel() {
     private val _headlineNews = MutableLiveData<Resource<List<Article>>>()
+    private val _trendingNews = MutableLiveData<Resource<List<Article>>>()
     val headlineNews: LiveData<Resource<List<Article>>> get() = _headlineNews
+    val trendingNews: LiveData<Resource<List<Article>>> get() = _trendingNews
 
     fun clearHeadlinesNews() {
         _headlineNews.postValue(Resource.Loading())
@@ -25,6 +27,16 @@ class NewsViewModel(private val repository: NewsRepository) : ViewModel() {
             _headlineNews.postValue(Resource.Success(response.articles))
         } catch (e: IOException) {
             _headlineNews.postValue(Resource.Error(e.message))
+        }
+    }
+
+    fun getTrendingNews(category: String, page:Int) = viewModelScope.launch {
+        _trendingNews.postValue(Resource.Loading())
+        try {
+            val response = repository.getTopHeadlines(category, page)
+            _trendingNews.postValue(Resource.Success(response.articles))
+        } catch (e: IOException) {
+            _trendingNews.postValue(Resource.Error(e.message))
         }
     }
 }

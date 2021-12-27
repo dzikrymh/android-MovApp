@@ -44,26 +44,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:checkedButton="@id/radioLatest"
+            android:checkedButton="@id/radioBusiness"
             android:animateLayoutChanges="true">
-
-            <RadioButton
-                android:id="@+id/radioLatest"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:background="@drawable/radio_selector"
-                android:button="@null"
-                android:gravity="center"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"
-                android:text="@string/latest"
-                android:textSize="18sp" />
 
             <RadioButton
                 android:id="@+id/radioBusiness"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:background="@drawable/radio_selector"
                 android:button="@null"
                 android:gravity="center"
@@ -158,7 +146,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutNewsCategory"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/item_news_height"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/item_news_height"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -169,6 +158,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:scrollbars="none"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -206,8 +196,19 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_news_trending"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleTrending" />
+
+    <ProgressBar
+        android:id="@+id/progressBarNewsTrending"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleTrending" />
