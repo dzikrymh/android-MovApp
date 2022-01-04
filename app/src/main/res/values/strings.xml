@@ -36,5 +36,7 @@
     <string name="hint_full_name">Your Full Name</string>
     <string name="hint_username">Your username</string>
     <string name="username">Username</string>
-    <string name="approved_term_and_privacy">By registering, you agree to the <a href="http://127.0.0.1:8000/terms-of-service">term &amp; condition</a> and <a href="http://127.0.0.1:8000/privacy-policy">privacy policy</a></string>
+    <string name="approved_term_and_privacy">By registering, you agree to \n the <a href="http://192.168.1.8:8000/terms-of-service">term &amp; condition</a> and <a href="http://192.168.1.8:8000/privacy-policy">privacy policy</a></string>
+    <string name="hint_phone_number">Your phone number</string>
+    <string name="phone">Phone</string>
 </resources>
