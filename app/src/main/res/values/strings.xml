@@ -24,4 +24,17 @@
     <string name="sports">Sports</string>
     <string name="technology">Technology</string>
     <string name="trending">Trending</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="hint_email">Your email</string>
+    <string name="hint_password">Your password</string>
+    <string name="dont_have_an_account">Don\'t have an account ?</string>
+    <string name="register">Register</string>
+    <string name="already_have_an_account">Already have an account ?</string>
+    <string name="name">Name</string>
+    <string name="hint_full_name">Your Full Name</string>
+    <string name="hint_username">Your username</string>
+    <string name="username">Username</string>
+    <string name="approved_term_and_privacy">By registering, you agree to the <a href="http://127.0.0.1:8000/terms-of-service">term &amp; condition</a> and <a href="http://127.0.0.1:8000/privacy-policy">privacy policy</a></string>
 </resources>

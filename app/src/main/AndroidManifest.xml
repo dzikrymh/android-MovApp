@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovApp">
         <activity
+            android:name=".ui.AuthActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.detail_movie.DetailMovieActivity"
             android:exported="false" />
         <activity

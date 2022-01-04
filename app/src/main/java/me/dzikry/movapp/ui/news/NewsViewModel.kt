@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import me.dzikry.movapp.data.models.Article
-import me.dzikry.movapp.data.network.Resource
+import me.dzikry.movapp.utils.Resource
 import me.dzikry.movapp.data.repositories.NewsRepository
 import java.io.IOException
 

@@ -1,4 +1,4 @@
-package me.dzikry.movapp.data.network
+package me.dzikry.movapp.utils
 
 sealed class Resource<T>(
     val data:T? = null,

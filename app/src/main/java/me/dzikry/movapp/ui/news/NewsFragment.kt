@@ -7,10 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import me.dzikry.movapp.R
 import me.dzikry.movapp.data.models.Article
 import me.dzikry.movapp.data.network.APIs
-import me.dzikry.movapp.data.network.Resource
+import me.dzikry.movapp.utils.Resource
 import me.dzikry.movapp.data.network.RetrofitInstance
 import me.dzikry.movapp.data.repositories.NewsRepository
 import me.dzikry.movapp.databinding.FragmentNewsBinding
@@ -47,6 +48,11 @@ class NewsFragment : Fragment() {
         val factory = NewsViewModelFactory(repo)
         viewModel = ViewModelProvider(this, factory).get(NewsViewModel::class.java)
 
+        binding.edtSearch.setOnClickListener {
+            val action = NewsFragmentDirections.actionNavNewsToSearchNewsFragment()
+            findNavController().navigate(action)
+        }
+
         binding.radioGroup.setOnCheckedChangeListener { radioGroup, id ->
             if (id == R.id.radioBusiness) {
                 clearDataNewsCategory()
@@ -81,7 +87,8 @@ class NewsFragment : Fragment() {
     }
 
     private fun showNewsDetails(news: Article) {
-        Toast.makeText(context, news.title, Toast.LENGTH_SHORT).show()
+        val action = NewsFragmentDirections.actionNavNewsToDetailNewsFragment(news)
+        findNavController().navigate(action)
     }
 
     private fun getNewsCategory(category: String, page: Int) {

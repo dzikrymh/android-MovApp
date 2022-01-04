@@ -7,7 +7,7 @@
     tools:context=".ui.news.NewsFragment">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/edtSearch"
+        android:id="@+id/cardViewSearch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -19,6 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/edtSearch"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:drawablePadding="10dp"
@@ -37,7 +38,7 @@
         android:scrollbarSize="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtSearch">
+        app:layout_constraintTop_toBottomOf="@+id/cardViewSearch">
 
         <RadioGroup
             android:id="@+id/radioGroup"
@@ -219,8 +220,8 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:src="@drawable/ic_menu"
-        app:layout_constraintBottom_toBottomOf="@+id/edtSearch"
+        app:layout_constraintBottom_toBottomOf="@+id/cardViewSearch"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/edtSearch" />
+        app:layout_constraintTop_toTopOf="@+id/cardViewSearch" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
